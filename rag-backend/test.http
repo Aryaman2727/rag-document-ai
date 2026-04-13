@@ -1,0 +1,8 @@
+POST https://POSTxxxx-5000.app.github.dev/auth/register
+/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "123"
+}
