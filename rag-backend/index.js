@@ -38,3 +38,13 @@ app.get("/test", (req, res) => {
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
+
+app.get("/", (req, res) => {
+  res.json({
+    status: "Server is running 🚀",
+    endpoints: {
+      upload: "/file/upload",
+      ask: "/api/ask"
+    }
+  });
+});
