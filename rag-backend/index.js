@@ -1,7 +1,9 @@
+require("dotenv").config();
+console.log("ENV CHECK:", process.env.MONGO_URI);
 console.log("CORRECT FILE RUNNING");
 const express = require("express");
 const mongoose = require("mongoose");
-
+const queryRoutes = require('./routes/query');
 const app = express();
 
 app.use(express.json());
@@ -13,6 +15,8 @@ const uploadRoutes = require("./routes/upload");
 // USE ROUTES
 app.use("/auth", authRoutes);
 app.use("/file", uploadRoutes);
+app.use('/api', uploadRoutes);
+app.use('/api', queryRoutes);
 
 // TEST ROUTE
 app.get("/", (req, res) => {
@@ -20,7 +24,7 @@ app.get("/", (req, res) => {
 });
 
 // DB
-mongoose.connect("mongodb+srv://TEST:Test123@cluster0.bghkdkn.mongodb.net/?appName=Cluster0")
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("DB Connected"))
 .catch(err => console.log("DB Error:", err));
 
